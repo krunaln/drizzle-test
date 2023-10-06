@@ -1,0 +1,225 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "id": "b0eca767-44b0-4747-9e46-a725c78d938d",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "city": {
+      "name": "city",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "countryCode": {
+          "name": "countryCode",
+          "type": "char(3)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "district": {
+          "name": "district",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "population": {
+          "name": "population",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "country": {
+      "name": "country",
+      "schema": "",
+      "columns": {
+        "code": {
+          "name": "code",
+          "type": "char(3)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "continent": {
+          "name": "continent",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "region": {
+          "name": "region",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "surfacearea": {
+          "name": "surfacearea",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "indepyear": {
+          "name": "indepyear",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "population": {
+          "name": "population",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lifeexpectancy": {
+          "name": "lifeexpectancy",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gnp": {
+          "name": "gnp",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gnpold": {
+          "name": "gnpold",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "localname": {
+          "name": "localname",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "governmentform": {
+          "name": "governmentform",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "headofstate": {
+          "name": "headofstate",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "capital": {
+          "name": "capital",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "code2": {
+          "name": "code2",
+          "type": "char(2)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "country_capital_city_id_fk": {
+          "name": "country_capital_city_id_fk",
+          "tableFrom": "country",
+          "tableTo": "city",
+          "columnsFrom": [
+            "capital"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "countrylanguage": {
+      "name": "countrylanguage",
+      "schema": "",
+      "columns": {
+        "countrycode": {
+          "name": "countrycode",
+          "type": "char(3)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "language": {
+          "name": "language",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "isofficial": {
+          "name": "isofficial",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "percentage": {
+          "name": "percentage",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "countrylanguage_countrycode_country_code_fk": {
+          "name": "countrylanguage_countrycode_country_code_fk",
+          "tableFrom": "countrylanguage",
+          "tableTo": "country",
+          "columnsFrom": [
+            "countrycode"
+          ],
+          "columnsTo": [
+            "code"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "countrylanguage_countrycode_language": {
+          "name": "countrylanguage_countrycode_language",
+          "columns": [
+            "countrycode",
+            "language"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
