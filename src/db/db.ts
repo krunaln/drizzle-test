@@ -17,7 +17,7 @@ const pool = new Pool({
  },
 });
  
-export const db = drizzle(pool, { schema });
+export const db = drizzle(pool, { schema, logger: true });
 
 export const startMigration = async() => {
   console.log("Migration Started");

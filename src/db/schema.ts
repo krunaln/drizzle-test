@@ -1,7 +1,8 @@
 import { integer, pgEnum, pgTable, serial, uniqueIndex, varchar, char, real, smallint, numeric, boolean, primaryKey, AnyPgColumn } from 'drizzle-orm/pg-core';
+import { createInsertSchema } from 'drizzle-zod';
 
 export const city = pgTable('city', {
-  id: serial('id').primaryKey().notNull(),
+  id: serial('id').primaryKey(),
   name: varchar('name', { length: 256 }).notNull(),
   countryCode: char('countryCode', { length: 3 }),
   district: varchar('district').notNull(),
@@ -37,3 +38,6 @@ export const countrylanguage = pgTable('countrylanguage', {
     pk: primaryKey(table.countrycode, table.language),
   }
 })
+
+// Schema for inserting a user - can be used to validate API requests
+export const insertCitySchema = createInsertSchema(city);
